@@ -3,7 +3,7 @@ import "./App.scss";
 import useLocalStorageState from "use-local-storage-state";
 
 export default function App() {
-   const [imagesUrl, setImagesUrls] = useState([
+  const [imagesUrl, setImagesUrls] = useState([
     "https://media.giphy.com/media/COYGe9rZvfiaQ/giphy.gif",
     "https://media.giphy.com/media/I9BrUZDq5hksw/source.gif",
     "https://media.giphy.com/media/B37cYPCruqwwg/source.gif",
@@ -24,47 +24,43 @@ export default function App() {
     "https://media.giphy.com/media/B6G2MYBmtnGYU/source.gif",
     "https://media.giphy.com/media/gE6IUBRWZd744/source.gif",
     "https://media.giphy.com/media/cO39srN2EUIRaVqaVq/source.gif",
-  ]); 
-
-
+    "https://media.giphy.com/media/1kEKt7lMzjcPu/giphy.gif",
+  ]);
 
   const [students, setStudents] = useState([
-    {name : "Solomon" , displayed: false},
-    // {name : "Beda" , displayed: false},
-    {name : "Buddika" , displayed: false},
-    {name : "Elena" , displayed: false},
-    {name : "Iryna" , displayed: false},
-    {name : "Jime" , displayed: false},
-    {name : "Mads" , displayed: false},
-    {name : "Marwah" , displayed: false},
-    {name : "Mila" , displayed: false},
-    {name : "Mohamed" , displayed: false},
-    {name : "Moses" , displayed: false},
-    {name : "Netta" , displayed: false},
-    {name : "Peculiar" , displayed: false},
-    {name : "Ricardo" , displayed: false},
-    {name : "Rodrigue" , displayed: false},
-    {name : "Roxana" , displayed: false},
-    {name : "Sasha" , displayed: false},
-    {name : "Yassine" , displayed: false},
-    
+    { name: "Solomon", displayed: false },
+    { name: "Buddika", displayed: false },
+    { name: "Elena", displayed: false },
+    { name: "Iryna", displayed: false },
+    { name: "Mads", displayed: false },
+    { name: "Marwah", displayed: false },
+    { name: "Mila", displayed: false },
+    { name: "Mohamed", displayed: false },
+    { name: "Moses", displayed: false },
+    { name: "Netta", displayed: false },
+    { name: "Peculiar", displayed: false },
+    { name: "Ricardo", displayed: false },
+    { name: "Rodrigue", displayed: false },
+    { name: "Roxana", displayed: false },
+    { name: "Sasha", displayed: false },
+    { name: "Yassine", displayed: false },
   ]);
 
   const [displayed, setDisplayed] = useState("");
   const [imgdisplayed, setImgDisplayed] = useState("");
-  const [reducedStudents , setReducedStudents] = useState([])
+  const [reducedStudents, setReducedStudents] = useState([]);
 
   const getRandomName = () => {
     let randomNum = 0;
     let i = 0;
     // let names = [...students];
-    let names = students.filter((item=>item.displayed === false))
-    console.log(names)
+    let names = students.filter((item) => item.displayed === false);
+    console.log(names);
     let myInterval = setInterval(async () => {
       randomNum = Math.floor(Math.random() * names.length);
       i++;
       setDisplayed(names[randomNum].name);
-      setImgDisplayed(null)
+      setImgDisplayed(null);
 
       if (i === 17) {
         clearInterval(myInterval);
@@ -76,32 +72,32 @@ export default function App() {
     setTimeout(() => {
       setDisplayed(names[randomNum].name);
       setImgDisplayed(imagesUrl[randomImg]);
-      const newStudents = students.map((item) =>{
-          if (item.name === names[randomNum].name) {
-                item.displayed = true
-          }   return item     });
+      const newStudents = students.map((item) => {
+        if (item.name === names[randomNum].name) {
+          item.displayed = true;
+        }
+        return item;
+      });
       setStudents(newStudents);
-      console.log(newStudents)
+      console.log(newStudents);
     }, 1800);
   };
-//   console.log(students);
-
-
-
-
+  //   console.log(students);
 
   return (
     <div className="container">
       <ul>
-        {students.map((item)=> {
-          return <li className={item.displayed ? "displayed" : "null"}>{item.name}</li>
+        {students.map((item) => {
+          return (
+            <li className={item.displayed ? "displayed" : "null"}>
+              {item.name}
+            </li>
+          );
         })}
       </ul>
       <button onClick={getRandomName}>go</button>
       {displayed && <h1 className="name">{displayed}</h1>}
       {imgdisplayed && <img src={imgdisplayed} className="image" />}
-  
     </div>
-    
   );
 }
