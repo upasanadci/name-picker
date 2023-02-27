@@ -34,7 +34,7 @@ export default function App() {
     { name: "Iryna", displayed: false },
     { name: "Mads", displayed: false },
     { name: "Marwah", displayed: false },
-    { name: "Mila", displayed: false },
+    { name: "Alice", displayed: false },
     { name: "Mohamed", displayed: false },
     { name: "Moses", displayed: false },
     { name: "Netta", displayed: false },
